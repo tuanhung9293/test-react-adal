@@ -5986,6 +5986,10 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-adal@^0.4.18:
+  version "0.4.18"
+  resolved "https://registry.yarnpkg.com/react-adal/-/react-adal-0.4.18.tgz#53d09ee925b0f94e1967dd8936da372f52087b8e"
+
 react-base16-styling@^0.5.1:
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/react-base16-styling/-/react-base16-styling-0.5.3.tgz#3858f24e9c4dd8cbd3f702f3f74d581ca2917269"

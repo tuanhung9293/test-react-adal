@@ -1,25 +1,21 @@
 import {
     UserLogin,
-    Dashboard,
-  } from '../containers/pages';
-  
-  import App from '../containers/App';
-  
-  const routes = [
-    {
-      component: App,
-      routes: [
-        {
-          component: UserLogin,
-          path: '/login'
+} from '../containers/pages';
+import ProtectedDashboard from '../containers/protected/ProtectedDashboard';
+
+import App from '../containers/App';
+
+const routes = [{
+    component: App,
+    routes: [{
+            component: UserLogin,
+            path: '/login'
         },
         {
-          component: Dashboard,
-          path: '/dashboard'
+            component: ProtectedDashboard,
+            path: '/dashboard'
         }
-      ]
-    }
-  ];
-  
-  export default routes;
-  
+    ]
+}];
+
+export default routes;

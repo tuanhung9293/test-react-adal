@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import registerServiceWorker from './registerServiceWorker';
-import { Root } from './containers';
-import { routes } from './routes';
+import { runWithAdal } from 'react-adal';
+import { authContext } from './adalConfig';
 
-ReactDOM.render(<Root routes={routes} />, document.getElementById('root'));
-registerServiceWorker();
+const DO_NOT_LOGIN = false;
+
+runWithAdal(authContext, () => {
+  require('./indexApp.js');
+}, DO_NOT_LOGIN);
