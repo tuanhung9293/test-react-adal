@@ -1,0 +1,5 @@
+export const AUTH_DISCARD_TOKEN = 'AUTH_DISCARD_TOKEN';
+export const API_REQUEST_SEND = 'API_REQUEST_SEND';
+
+export const USER_LOGIN = "USER_LOGIN";
+export const USER_LOGOUT = "USER_LOGOUT";
