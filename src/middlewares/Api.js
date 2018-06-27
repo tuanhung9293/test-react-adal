@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as Actions from '../actions';
+import * as Actions from '../store/actions';
 import { API_URL } from '../constants/Api';
 import { getActionTypes } from 'redux-axios-middleware';
 
