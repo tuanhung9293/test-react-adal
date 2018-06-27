@@ -51,7 +51,6 @@ const RenderRoutes = ({routes, auth, location}) => {
 RenderRoutes.propTypes = {
   routes: PropTypes.array.isRequired,
   parent: PropTypes.array,
-  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({auth: state.auth});

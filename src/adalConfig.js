@@ -4,7 +4,7 @@ export const adalConfig = {
   tenant: 'eriksdirectory.onmicrosoft.com',
   clientId: '403403d7-0497-451f-a054-d3476be0dd51',
   endpoints: {
-    api: '14d71d65-f596-4eae-be30-27f079bf8d4b',
+    api: 'https://graph.microsoft.com',
   },
   cacheLocation: 'localStorage',
 };
