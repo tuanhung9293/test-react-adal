@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import * as Actions from '../../store/actions/';
 
 class UserLogin extends Component {
-
     render() {
         return (
             <div>

@@ -10,6 +10,7 @@ import storage from 'localforage';
 
 const persistConfig = {
   key: 'root',
+  whitelist: ['auth'],
   storage: storage,
 }
 

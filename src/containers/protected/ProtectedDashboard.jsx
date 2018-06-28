@@ -6,9 +6,10 @@ import { MasterLayout } from '../../components/layouts';
 class ProtectedDashboard extends Component {
     render() {
         const LayDashboard = withAdalLoginApi(Dashboard, () => <Loading />, (error) => <ErrorPage error={error}/>);
+        console.log(typeof (<Loading/>));
         return (
             <MasterLayout>
-                <LayDashboard />
+                <LayDashboard/>
             </MasterLayout>
         );
     }

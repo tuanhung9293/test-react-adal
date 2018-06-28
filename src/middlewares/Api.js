@@ -2,6 +2,7 @@ import axios from 'axios';
 import * as Actions from '../store/actions';
 import { API_URL } from '../constants/Api';
 import { getActionTypes } from 'redux-axios-middleware';
+import { authContext } from '../adalConfig';
 
 export const apiClients = {
   default: {
@@ -32,7 +33,7 @@ export const apiMiddlewareConfig = {
   },
   onError: ({ action, next, error, dispatch }, options) => {
     if (error.response && error.response.status === 401) {
-      return dispatch(Actions.userLogout());
+      return authContext.LogOut();
     }
 
     let errorObject;

@@ -2,6 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../../store/actions';
+import { authContext } from '../../adalConfig';
 
 import { Link } from 'react-router-dom'
 
@@ -28,8 +29,8 @@ class Header extends React.Component {
                             <li className="{ active: isActive('/UserData') }"><a href="#/UserData"></a></li>
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
-                            <li><a className="btn btn-link" ng-show="userInfo.isAuthenticated" onClick={this.logout}>Logout</a></li>
-                            <li><a className="btn btn-link" ng-hide=" userInfo.isAuthenticated" onClick={this.logout}>Login</a></li>
+                            <li><a className="btn btn-link" onClick={() => authContext.logOut()}>Logout</a></li>
+                            <li><a className="btn btn-link" onClick={() => authContext.login()}>Login</a></li>
                         </ul>
                     </div>
                 </div>

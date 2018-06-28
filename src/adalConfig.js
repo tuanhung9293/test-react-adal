@@ -4,9 +4,10 @@ export const adalConfig = {
   tenant: 'eriksdirectory.onmicrosoft.com',
   clientId: '403403d7-0497-451f-a054-d3476be0dd51',
   endpoints: {
-    api: 'https://graph.microsoft.com',
+    api: '403403d7-0497-451f-a054-d3476be0dd51',
   },
   cacheLocation: 'localStorage',
+  postLogoutRedirectUri: 'http://localhost:3000'
 };
 
 export const authContext = new AuthenticationContext(adalConfig);
