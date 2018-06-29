@@ -1,5 +1,11 @@
+.user-page {
+  margin-top: 100px; }
+
 .dashboard-page {
   margin-top: 100px; }
 
 .todo-elm .float-right {
   float: right; }
+
+.home-page {
+  margin-top: 100px; }

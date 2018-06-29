@@ -6,6 +6,12 @@ import ConnectedSwitch from './connectedSwitch';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import {
+    Home,
+} from '../containers/pages';
+import ProtectedDashboard from '../containers/protected/ProtectedDashboard';
+import ProtectedUser from '../containers/protected/ProtectedUser';
+
 const RenderRoutes = ({routes, auth, location}) => {
   if (!routes) {
     return null;
@@ -21,35 +27,15 @@ const RenderRoutes = ({routes, auth, location}) => {
 
   return (
     <ConnectedSwitch>
-      {routes.map((route, i) => (
-        <Route key={i} path={route.path} exact={route.exact} strict={route.strict} render={(props) => (
-          <div>
-            {
-              route.requireLogin && !auth.token && (
-                <Redirect to={{
-                  pathname: route.requireLogin,
-                  state: { from: route.path }
-                }}/>
-              )
-            }
-            {
-              (
-                !route.requireLogin ||
-                auth.token ||
-                !route.path ||
-                route.requireLogin === route.path
-              ) &&
-              <route.component {...props} route={route}/>
-            }
-          </div>
-        )}/>
-      ))}
+        <Route path="/home" component={Home}/>
+        <Route path="/dashboard" component={ProtectedDashboard}/>
+        <Route path="/user" component={ProtectedUser}/>
+        <Redirect from='' to='/home'/>
     </ConnectedSwitch>
   );
 };
 
 RenderRoutes.propTypes = {
-  routes: PropTypes.array.isRequired,
   parent: PropTypes.array,
 };
 

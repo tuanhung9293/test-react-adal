@@ -7,7 +7,7 @@ export const adalConfig = {
     api: '403403d7-0497-451f-a054-d3476be0dd51',
   },
   cacheLocation: 'localStorage',
-  postLogoutRedirectUri: 'http://localhost:3000'
+  postLogoutRedirectUri: 'http://localhost:8080/home'
 };
 
 export const authContext = new AuthenticationContext(adalConfig);

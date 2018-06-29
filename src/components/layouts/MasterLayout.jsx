@@ -7,12 +7,16 @@ import { bindActionCreators } from 'redux';
 import * as Actions from '../../store/actions';
 
 class MasterLayout extends Component {
+    static defaultProps = {
+        activeLink: ''
+    }
+
     render() {
         const childrenWithProps = React.Children.map(this.props.children, (child) => React.cloneElement(child, {}));
 
         return (
             <div>
-                <Header />
+                <Header activeLink={ this.props.activeLink }/>
                     <div>{childrenWithProps}</div>
                 <Footer />
             </div>

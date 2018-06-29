@@ -4,13 +4,10 @@ import {
 } from '../../adalConfig';
 import axios from 'axios';
 
-import {
-    Cookies
-} from 'react-cookie';
-
+import { Cookies } from 'react-cookie';
 
 const cookies = new Cookies();
-// console.log(cookies.get('XSRF-TOKEN'));
+console.log(`JSESSIONID=${cookies.get('JSESSIONID')}; XSRF-TOKEN=${cookies.get('XSRF-TOKEN')}`);
 
 export const getTodoList = () => {
     return (dispatch) => {
@@ -47,23 +44,24 @@ export const addTodoList = (data) => {
         adalApiFetch(axios, 'http://localhost:8080/api/todolist', {
                 method: 'POST',
                 data: data,
-                headers: {
-                    // 'XSRF-TOKEN': cookies.get('XSRF-TOKEN'),
-                    // 'Cookie': `JSESSIONID=${cookies.get('JSESSIONID')}; XSRF-TOKEN=${cookies.get('XSRF-TOKEN')}`,
-                    'X-XSRF-TOKEN':'3254ac17-af1f-4fab-83cc-8b655b3f7994',
-                    // 'Cookie': 'JSESSIONID=C53B05F19075CD6A38C366F0BB862B0B; XSRF-TOKEN=3254ac17-af1f-4fab-83cc-8b655b3f7994',
-                    'Content-Type': 'application/json;charset=UTF-8',
-                },
-                credentials: 'include',
+                withCredentials: true
             })
             .then((response) => {
                 dispatch({
                     type: types.ADD_TODO_LIST,
                     response
                 });
+                dispatch({
+                    type: types.RESPONSE_MESSAGE,
+                    response,
+                });
             })
             .catch((error) => {
                 console.log("error", error);
+                dispatch({
+                    type: types.ERROR_MESSAGE,
+                    error,
+                });
             });
     };
 };
@@ -77,11 +75,20 @@ export const editTodoList = (data) => {
             .then((response) => {
                 dispatch({
                     type: types.EDIT_TODO_LIST,
-                    response
+                    response,
+                    data: data,
+                });
+                dispatch({
+                    type: types.RESPONSE_MESSAGE,
+                    response,
                 });
             })
             .catch((error) => {
                 console.log("error", error);
+                dispatch({
+                    type: types.ERROR_MESSAGE,
+                    error,
+                });
             });
     };
 };
@@ -94,11 +101,20 @@ export const deleteTodoList = (id) => {
             .then((response) => {
                 dispatch({
                     type: types.DELETE_TODO_LIST,
-                    response
+                    response,
+                    ID: id,
+                });
+                dispatch({
+                    type: types.RESPONSE_MESSAGE,
+                    response,
                 });
             })
             .catch((error) => {
                 console.log("error", error);
+                dispatch({
+                    type: types.ERROR_MESSAGE,
+                    error,
+                });
             });
     };
 };

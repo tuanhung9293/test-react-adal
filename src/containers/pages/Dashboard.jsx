@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../../store/actions';
 
+import { authContext } from '../../adalConfig';
 import { TodoElm } from '../../components/elements';
 
 class Dashboard extends Component {
@@ -18,19 +19,21 @@ class Dashboard extends Component {
         this.setState({ addValue: event.target.value });
     }
 
-    handleAdd = () => {
-        this.props.actions.addTodoList({ Description: this.state.addValue, Owner: "tuanhung9293@gmail.com" })
+    handleAdd = async () => {
+        await this.props.actions.addTodoList({ Description: this.state.addValue, Owner: authContext._user.userName });
+        this.setState({ addValue: '' });
+        await this.props.actions.getTodoList();
     }
 
     render() {
-        const { todoList } = this.props;
+        const { todoList, message } = this.props;
         return (
             <div className="container dashboard-page">
-                <p className="error">error</p>
-                <p>loadingMessage</p>
+                <p className="error">{message.error}</p>
+                <p>{message.response}</p>
                 <div className="panel">
                     <div className="input-group">
-                        <input className="form-control" onChange={this.handleAddChange}/>
+                        <input className="form-control" onChange={this.handleAddChange} value={this.state.addValue}/>
                         <span className="input-group-btn">
                             <button onClick={this.handleAdd} className="btn btn-default">Add</button>
                         </span>
@@ -50,7 +53,8 @@ class Dashboard extends Component {
 
 
 const mapStateToProps = state => ({
-    todoList: state.todoList || []
+    todoList: state.todoList || [],
+    message: state.message || {}
 });
 
 const mapDispatchToProps = dispatch => ({

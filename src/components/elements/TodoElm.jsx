@@ -22,6 +22,11 @@ class TodoElm extends Component {
         this.editSwitch();
     }
 
+    handleEditCancel = () => {
+        this.setState({ editValue: this.props.item.Description });
+        this.editSwitch();
+    }
+
     handleDeleteSubmit = () => {
         this.props.actions.deleteTodoList(this.props.item.ID)
     }
@@ -40,7 +45,7 @@ class TodoElm extends Component {
                             </span>
                             <span className="float-right">
                                 <a onClick={this.handleEditSubmit}>Save</a> |
-                            <a onClick={this.editSwitch}>Cancel</a>
+                            <a onClick={this.handleEditCancel}>Cancel</a>
                             </span>
                         </td>
                         :
