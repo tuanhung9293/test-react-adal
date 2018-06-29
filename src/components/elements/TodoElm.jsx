@@ -5,34 +5,53 @@ import * as Actions from '../../store/actions/';
 
 class TodoElm extends Component {
     state = {
-        editting: false
+        editting: false,
+        editValue: this.props.item.Description,
     }
+
     editSwitch = () => {
         this.setState({ editting: !this.state.editting })
+    }
+
+    handleEditChange = (event) => {
+        this.setState({ editValue: event.target.value });
+    }
+
+    handleEditSubmit = () => {
+        this.props.actions.editTodoList({ Description: this.state.editValue, ID: this.props.item.ID })
+        this.editSwitch();
+    }
+
+    handleDeleteSubmit = () => {
+        this.props.actions.deleteTodoList(this.props.item.ID)
     }
 
     render() {
         const { item } = this.props;
         return (
-            <tr>
-                <td>
-                    {
-                        item.edit ? <input type="text" className="form-control" />
-                            : <p>{item.Description}</p>
-                    }
-                </td>
-                <td>
-                    <p data-ng-hide="item.edit || editingInProgress">
-                        <a onClick={this.editSwitch}>Edit</a> |
-                        <a onClick={() => this.props.actions.deleteTodoList(item.ID)}>Delete</a>
-                    </p>
-                    {
-                        this.state.editting && <p data-ng-show="item.edit">
-                            <a onClick={this.editSwitch}>Save</a> |
+            <tr className="todo-elm">
+                {
+                    this.state.editting ?
+                        <td>
+                            <span>
+                                <input type="text" className="form-control"
+                                    defaultValue={this.state.editValue}
+                                    onChange={this.handleEditChange} />
+                            </span>
+                            <span className="float-right">
+                                <a onClick={this.handleEditSubmit}>Save</a> |
                             <a onClick={this.editSwitch}>Cancel</a>
-                        </p>
-                    }
-                </td>
+                            </span>
+                        </td>
+                        :
+                        <td>
+                            <span>{item.Description}</span>
+                            <span className="float-right">
+                                <a onClick={this.editSwitch}>Edit</a> |
+                            <a onClick={() => this.props.actions.deleteTodoList(item.ID)}>Delete</a>
+                            </span>
+                        </td>
+                }
             </tr>)
     }
 }
